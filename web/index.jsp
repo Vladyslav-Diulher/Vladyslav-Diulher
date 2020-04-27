@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-sm-6" style="padding-right: 0">
             <div class="main">
-                <img src="hospital.jpg" class="img-fluid" alt="Responsive image"> <br>
+                <img src="img/hospital.jpg" class="img-fluid" alt="Responsive image"> <br>
                 <p><fmt:message key="index.picture"/></p>
             </div>
         </div>
