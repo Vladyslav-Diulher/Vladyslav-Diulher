@@ -1,0 +1,21 @@
+.main {
+    padding: 5%;
+    text-align: center;
+    background-color: #d5f3ff;
+    min-height: 500px;
+}
+.inner-content-center {
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: #8fcbcb;
+    border: 2px solid darkblue;
+    padding: 2%;
+    border-radius: 20px;
+}
+.table-content{
+    background-color: #8fcbcb;
+    border: 2px solid darkblue;
+    padding: 2%;
+    border-radius: 20px;
+
+}

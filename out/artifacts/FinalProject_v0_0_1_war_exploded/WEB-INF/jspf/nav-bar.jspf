@@ -1,0 +1,87 @@
+<%@ page import="ua.nure.diulher.SummaryTask4.db.Role" %>
+<%@ page import="ua.nure.diulher.SummaryTask4.db.entity.User" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+    <ul class="navbar-nav">
+        <a class="navbar-brand" href="index.jsp"><fmt:message
+                key="hospital"/></a>
+        <c:if test="${not empty user}">
+            <c:choose>
+                <c:when test="${user.roleId == 0 }">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <fmt:message key="menu"/>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link" href="controller?command=viewDoctorList"><fmt:message
+                                    key="nav-bar.listOfDoctors"/></a>
+                            <a class="nav-link" href="controller?command=viewPatientList"><fmt:message
+                                    key="nav-bar.listOfPatients"/></a>
+                            <a class="nav-link" href="controller?command=addPatient"><fmt:message
+                                    key="nav-bar.addPatient"/></a>
+                            <a class="nav-link" href="controller?command=addDoctor"><fmt:message
+                                    key="nav-bar.addDoctor"/></a>
+                            <a class="nav-link" href="controller?command=addMedSis"><fmt:message
+                                    key="nav-bar.addMedSister"/></a>
+                        </div>
+                    </li>
+                </c:when>
+
+                <c:when test="${user.roleId  == 1 }">
+                    <a class="nav-link" href="controller?command=medicalCard"><fmt:message key="showMedCard"/></a>
+                </c:when>
+
+                <c:when test="${user.roleId  == 2 }">
+                    <a class="nav-link" href="controller?command=medSisChoosePatient"><fmt:message
+                            key="prescribeTreatment"/></a>
+                </c:when>
+
+                <c:when test="${user.roleId  == 3 }">
+                    <a class="nav-link" href="controller?command=choosePatient"><fmt:message
+                            key="prescribeTreatment"/></a>
+                </c:when>
+            </c:choose>
+            <li class="nav-item  ">
+                <a class="nav-link " href="controller?command=logout"><fmt:message key="nav-bar.logOut"/></a>
+            </li>
+        </c:if>
+        <c:if test="${empty user}">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.jsp"><fmt:message key="login.login"/></a>
+                    </li>
+                </ul>
+            </div>
+        </c:if>
+    </ul>
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="nav navbar-nav ml-auto">
+            <form action="changeLocale.jsp" method="post">
+                <div class="input-group">
+                    <select class="custom-select" id="inputGroupSelect04" name="locale">
+                        <c:forEach items="${applicationScope.locales}" var="locale">
+                            <c:set var="selected" value="${locale.key == currentLocale ? 'selected' : '' }"/>
+                            <option value="${locale.key}" ${selected}>${locale.value}</option>
+                        </c:forEach>
+                    </select>
+                    <div class="input-group-append">
+                        <input class="btn btn-outline-secondary" type="submit" value="<fmt:message key="ok"/>">
+                    </div>
+                </div>
+            </form>
+        </ul>
+    </div>
+
+</nav>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
