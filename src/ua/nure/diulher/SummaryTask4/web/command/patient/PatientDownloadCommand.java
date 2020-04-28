@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.lang.reflect.Parameter;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Patient discharge command.
@@ -54,17 +57,23 @@ public class PatientDownloadCommand extends Command {
     }
 
     private String fillMedCard(HttpServletRequest request) {
-        StringBuilder sb = new StringBuilder("MEDCARD" + LS + "Patient: ");
         HttpSession session = request.getSession();
+        String locale = request.getParameter("locale");
+        LOG.debug("LOCALE: ---> " + locale);
+
+        ResourceBundle bundle = ResourceBundle.getBundle("resources", new Locale(locale));
+        StringBuilder sb = new StringBuilder(bundle.getString("medcard") + LS + bundle.getString("patient") + ": ");
         MedicalCard card = (MedicalCard) session.getAttribute("medicalCard");
+
         User doctor = (User) session.getAttribute("doctor");
         User patient = (User) session.getAttribute("patient");
+
         sb.append(patient.getFirstName() + " " + patient.getLastName() + LS);
-        sb.append("Doctor: ").append(doctor.getFirstName() + " " + doctor.getLastName()).append(LS);
-        sb.append("Diagnose: ").append(card.getDiagnose()).append(LS);
-        sb.append("Procedures: ").append(card.getProcedure()).append(LS);
-        sb.append("Medicament: ").append(card.getMedicaments()).append(LS);
-        sb.append("Operation: ").append(card.getOperations()).append(LS);
+        sb.append(bundle.getString("doctor") + ": ").append(doctor.getFirstName() + " " + doctor.getLastName()).append(LS);
+        sb.append(bundle.getString("diagnose") + ": ").append(card.getDiagnose()).append(LS);
+        sb.append(bundle.getString("procedures") + ": ").append(card.getProcedure()).append(LS);
+        sb.append(bundle.getString("medicament") + ": ").append(card.getMedicaments()).append(LS);
+        sb.append(bundle.getString("doctor") + ": ").append(card.getOperations()).append(LS);
         return sb.toString();
     }
 }

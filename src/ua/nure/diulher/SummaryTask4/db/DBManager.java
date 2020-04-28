@@ -93,7 +93,6 @@ public class DBManager {
             "FROM doctor_to_patient " +
             "WHERE doc_id=?";
 
-
     private static final String SQL_INSERT_PATIENT = "INSERT INTO users " +
             " VALUES (DEFAULT, ? , ?,?, ? , ? , 1)";
 
@@ -115,7 +114,6 @@ public class DBManager {
 
     private static final String SQL_INSERT_MEDSIS = "INSERT INTO users " +
             " VALUES (DEFAULT, ? , ?, ?, ? , null , 2)";
-
 
     private static final String SQL_DELETE_USER = "DELETE FROM users " +
             "WHERE id=? ";
@@ -264,7 +262,7 @@ public class DBManager {
     /**
      * insert position of doctor.
      *
-     * @param doctorID id of a doctor.
+     * @param doctorID   id of a doctor.
      * @param positionID id of position.
      * @throws DBException
      */
@@ -379,7 +377,7 @@ public class DBManager {
     /**
      * Connect doctor and patient in a table.
      *
-     * @param doctorId id of doctor.
+     * @param doctorId  id of doctor.
      * @param patientId id of patient.
      * @throws DBException
      */
@@ -497,7 +495,7 @@ public class DBManager {
     /**
      * Update medcard.
      *
-     * @param medCardID id of medcard.
+     * @param medCardID   id of medcard.
      * @param medicalCard parameters of medcard.
      * @throws DBException
      */
@@ -529,7 +527,7 @@ public class DBManager {
     /**
      * Update medcard.
      *
-     * @param medCardID id of medcard.
+     * @param medCardID   id of medcard.
      * @param medicalCard parameters of medcard.
      * @throws DBException
      */
@@ -604,7 +602,6 @@ public class DBManager {
             pstmt = con.prepareStatement(SQL_GET_MEDCARD);
             pstmt.setLong(1, patientID);
             rs = pstmt.executeQuery();
-
             if (rs.next()) {
                 medicalCard = extractMedCard(rs);
             }

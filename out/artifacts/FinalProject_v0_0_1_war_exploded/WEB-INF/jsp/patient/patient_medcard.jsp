@@ -53,6 +53,7 @@
                     <br>
                     <form id="login_form" action="controller" method="post">
                         <input type="hidden" name="command" value="patientDownload"/>
+                        <input type="hidden" name="locale" value="${currentLocale}"/>
                         <input type="hidden" name="patientFirstName" value=${patient.firstName}/>
                         <input type="hidden" name="patientLastName" value=${patient.lastName}/>
                         <input type="hidden" name="doctorFirstName" value=${doctor.firstName}/>
